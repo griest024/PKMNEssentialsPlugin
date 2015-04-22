@@ -51,11 +51,11 @@ plugins = plugins.select { |filename| filename.index("._") != 0 }
   
 # Evaluate each plugin
 plugins.each do |plugin|
-  plugin_path = "plugins\\" + plugin
-  File.open( plugin_path, "r+" ) do |infile|
-    code = infile.read( File.size( plugin_path ) )
-    eval( code )
-  end
+#  plugin_path = "plugins\\" + plugin
+#  File.open( plugin_path, "r+" ) do |infile|
+#    code = infile.read( File.size( plugin_path ) )
+#    eval( code )
+#  end
   
   # Get the list of plugins in the shutdown order
   plugins = get_plugin_order( :on_exit )

@@ -10,7 +10,7 @@
 
 # Setup the project directory from the command-line argument
 OS_VERSION = `ver`.strip
-$PROJECT_DIR = ARGV[0]
+$PROJECT_DIR = "../"
 if OS_VERSION.index( "Windows XP" )
   $PROJECT_DIR = String.new( $PROJECT_DIR )
 elsif OS_VERSION.index( "Windows" )

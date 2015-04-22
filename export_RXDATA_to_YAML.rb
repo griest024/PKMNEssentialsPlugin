@@ -1,7 +1,7 @@
 
 
 # Edit this value to hold the location of Data, Game.rxproj, etc. RELATIVE to the location of this file
-$PROJECT_DIR = ".."
+$PROJECT_DIR = "..\\Pokemon Virginia"
 
 
 

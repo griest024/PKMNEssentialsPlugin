@@ -10,6 +10,7 @@
 #  Mercurial.  When the system shuts down, all data is output into YAML and when the
 #  system is started again, the YAML files are read back into the original data files.
 #===============================================================================
+require_relative "../plugin_base"
 
 class DataImporterExporter < PluginBase
   # Register this plugin so that the system knows to execute it

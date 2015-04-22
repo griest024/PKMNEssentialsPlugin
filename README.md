@@ -26,7 +26,7 @@ For example if the root of my project directory was this:
 -Plugin
 
 where Plugin was the directory that held Export_RXDATA_to_YAML.rb, then $PROJECT_DIR should equal ".."
-- If you're only using game.bat to import and export files then you should just follow the usage instructions in Raku's readme (add necessary info to game.bat and game.yaml)
+- If you're only using game.bat to import and export files then you should just follow the usage instructions in Raku's readme (add necessary info to game.bat and game.yaml) NOTE: I have found that passing directories though game.bat is unreliable. Its safer just to edit $PROJECT_DIR in export_RXDATA_to_YAML.rb and start_rmxp.rb directly as well as $CONFIG_PATH in common.rb.
 
 
 Notes when using CVS:

@@ -1,6 +1,5 @@
 
-require_relative "plugins/data_importer_exporter"
-require_relative "plugins/script_importer_exporter"
+
 
 $PROJECT_DIR = ".."
 
@@ -11,6 +10,8 @@ puts $PROJECT_DIR
 
 $DATA_TYPE = "rxdata"
 
+require_relative "plugins/data_importer_exporter"
+require_relative "plugins/script_importer_exporter"
 require_relative 'rmxp/rgss'
 require_relative 'common'
 require_relative 'plugin_base'
@@ -53,6 +54,7 @@ plugins.each do |plugin|
 #    code = infile.read( File.size( plugin_path ) )
 #    eval( code )
 #  end
+end
   
   # Get the list of plugins in the shutdown order
   plugins = get_plugin_order( :on_exit )
@@ -60,11 +62,14 @@ plugins.each do |plugin|
   # Create each plugin object
   plugins.collect! {|plugin| eval( plugin + ".new" )}
   
+    i = 0
+    
   # Execute each plugin's on_exit event
   plugins.each do |plugin|
+    puts i
+    i = i + 1
     plugin.on_exit
   end
   
   # Delete the startup timestamp
   load_startup_time(true)
-end

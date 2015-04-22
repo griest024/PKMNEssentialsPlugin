@@ -10,7 +10,7 @@
 #  shutdown of the system.
 #===============================================================================
 require_relative 'rgl/adjacency'
-require_relative 'rgl/topsort'
+require_relative 'rgl/topsort.rb'
 
 class PluginBase
   @@plugins = []

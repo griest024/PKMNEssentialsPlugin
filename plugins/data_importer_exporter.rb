@@ -35,7 +35,7 @@ class DataImporterExporter < PluginBase
     print_separator(true)
     
     # Check if the input directory exists
-    if not (File.exists? $INPUT_DIR and File.directory? $INPUT_DIR)
+    if not (File.exist? $INPUT_DIR and File.directory? $INPUT_DIR)
       puts "Input directory #{$INPUT_DIR} does not exist."
       puts "Nothing to import...skipping import."
       puts
@@ -43,7 +43,7 @@ class DataImporterExporter < PluginBase
     end
  
     # Check if the output directory exists
-    if not (File.exists? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
+    if not (File.exist? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
       puts "Error: Output directory #{$OUTPUT_DIR} does not exist."
       puts "Hint: Check that the $DATA_DIR variable in paths.rb is set to the correct path."
       puts
@@ -143,7 +143,7 @@ class DataImporterExporter < PluginBase
     files = Dir.entries( $INPUT_DIR )
     files -= $DATA_IGNORE_LIST
     files = files.select { |e| File.extname(e) == ".#{$DATA_TYPE}" }
-    files = files.select { |e| file_modified_since?($INPUT_DIR + e, $STARTUP_TIME) or not data_file_exported?($INPUT_DIR + e) }
+   # files = files.select { |e| file_modified_since?($INPUT_DIR + e, $STARTUP_TIME) } 
     files.sort!
     
     puts files

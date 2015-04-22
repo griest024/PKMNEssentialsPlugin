@@ -12,6 +12,7 @@ Modifications:
 - replaced File.exists? with File.exist? for convention of updated ruby
 - changed the way that $CONFIG_PATH and $PROJECT_DIR are defined since Raku's way doesn't seem to work anymore (new ruby)
 - TODO: import editor scripts
+- TODO: figure out how to get rid of the to_yaml depreceated warnings
 
 
 Features:

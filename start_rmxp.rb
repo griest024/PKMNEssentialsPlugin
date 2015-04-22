@@ -17,8 +17,6 @@ elsif OS_VERSION.index( "Windows" )
  # $PROJECT_DIR = String.new( $PROJECT_DIR ).gsub! "/", "\\"
 end
 
-$PROJECT_DIR = ".."
-
 $DATA_TYPE = "rxdata"
 
 require_relative "plugins/data_importer_exporter"

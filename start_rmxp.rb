@@ -10,25 +10,22 @@
 
 # Setup the project directory from the command-line argument
 OS_VERSION = `ver`.strip
-$PROJECT_DIR = "../"
+$PROJECT_DIR = ".."
 if OS_VERSION.index( "Windows XP" )
   $PROJECT_DIR = String.new( $PROJECT_DIR )
 elsif OS_VERSION.index( "Windows" )
   $PROJECT_DIR = String.new( $PROJECT_DIR ).gsub! "/", "\\"
 end
 
-
-
-libdir = File.dirname("./")
-$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+$PROJECT_DIR = ".."
 
 
 
 $DATA_TYPE = "rxdata"
 
-require 'rmxp/rgss'
-require 'common'
-require 'plugin_base'
+require_relative 'rmxp/rgss'
+require_relative 'common'
+require_relative 'plugin_base'
 
 #######################################
 #        LOCAL METHODS
@@ -62,6 +59,7 @@ exit if check_for_rmxp(true)
 # Get the list of plugins in the plugin directory
 plugins = Dir.entries( "plugins" )
 plugins = plugins.select { |filename| File.extname(filename) == ".rb" }
+  
 
 # FIX: For TextMate's annoying habit of creating backup files automatically
 #      that still have the .rb extension.
@@ -69,11 +67,12 @@ plugins = plugins.select { |filename| filename.index("._") != 0 }
 
 # Evaluate each plugin
 plugins.each do |plugin|
-  plugin_path = "plugins\\" + plugin
-  File.open( plugin_path, "r+" ) do |infile|
-    code = infile.read( File.size( plugin_path ) )
-    eval( code )
-  end
+#  plugin_path = ".\\plugins\\" + plugin
+#  puts plugin_path
+#  File.open( plugin_path, "r+" ) do |infile|
+#    code = infile.read( File.size( plugin_path ) )
+#    eval( code )
+#  end
 end
 
 # Get the list of plugins in the startup order

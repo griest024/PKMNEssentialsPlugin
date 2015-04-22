@@ -117,11 +117,13 @@ class DataImporterExporter < PluginBase
     $INPUT_DIR  = $PROJECT_DIR + '/' + $DATA_DIR + '/'
     $OUTPUT_DIR = $PROJECT_DIR + '/' + $YAML_DIR   + '/'
     
-    puts $INPUT_DIR
+    
  
     print_separator(true)
     puts "  Data Export"
     print_separator(true)
+    
+    puts $INPUT_DIR
  
     $STARTUP_TIME = load_startup_time || Time.now
  

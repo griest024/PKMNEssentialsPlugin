@@ -23,8 +23,11 @@ os_version = `ver`.strip
 if os_version.index( "Windows XP" )
   $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" )
 elsif os_version.index( "Windows" )
-  $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" ).gsub! "/", "\\"
+#  $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" ).gsub! "/", "\\"
 end
+
+$CONFIG_PATH = "../Game.yaml"
+
 
 # Read the config YAML file
 config = nil

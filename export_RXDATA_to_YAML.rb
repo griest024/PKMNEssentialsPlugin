@@ -2,14 +2,10 @@
 require_relative "plugins/data_importer_exporter"
 require_relative "plugins/script_importer_exporter"
 
-$PROJECT_DIR = "../"
+$PROJECT_DIR = ".."
 
 puts $PROJECT_DIR
 
-
-
-libdir = File.dirname("./")
-$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 
 

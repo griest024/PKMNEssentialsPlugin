@@ -17,9 +17,6 @@ elsif OS_VERSION.index( "Windows" )
   $PROJECT_DIR = String.new( $PROJECT_DIR ).gsub! "/", "\\"
 end
 
-puts $PROJECT_DIR
-sleep 5
-
 
 
 libdir = File.dirname("./")

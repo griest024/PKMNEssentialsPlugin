@@ -7,6 +7,7 @@ $PROJECT_DIR = "../"
 puts $PROJECT_DIR
 
 
+
 libdir = File.dirname("./")
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 

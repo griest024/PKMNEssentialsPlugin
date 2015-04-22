@@ -19,7 +19,7 @@ Features:
 - Export_RXDATA_to_YAML.rb exports all the data (bypasses game.dat and import)
 
 Usage:
-- To use export script, edit the line $PROJECT_DIR = ".." so that $PROJECT_DIR holds the root of pkmn essentials RELATIVE to the location of the .rb file
+- To use export script, edit the line $PROJECT_DIR =  so that $PROJECT_DIR holds the root of pkmn essentials RELATIVE to the location of the .rb file
 For example if the root of my project directory was this:
 -Data
 -Graphics

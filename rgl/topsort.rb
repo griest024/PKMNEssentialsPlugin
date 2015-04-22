@@ -1,6 +1,6 @@
 # topsort.rb
 
-require_relative 'traversal'
+require 'rgl/traversal'
 
 module RGL
 

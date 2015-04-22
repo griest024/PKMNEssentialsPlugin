@@ -9,9 +9,9 @@
 # Visitor[http://www.boost.org/libs/graph/doc/visitor_concepts.html] Concepts
 # in a slightly modified fashion (especially for the RGL::DFSIterator).
 
-require_relative 'base'
+require 'rgl/base'
 require 'rubygems' rescue LoadError # If using stream gem
-require_relative '../stream'
+require 'stream'
 
 module RGL
 

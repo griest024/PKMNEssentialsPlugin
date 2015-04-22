@@ -11,8 +11,6 @@
 #  system is started again, the YAML files are read back into the original data files.
 #===============================================================================
 
-require_relative "../plugin_base"
-
 class DataImporterExporter < PluginBase
   # Register this plugin so that the system knows to execute it
   register self
@@ -113,29 +111,25 @@ class DataImporterExporter < PluginBase
   end
 
   def on_exit
-    # Set up the directory paths
+	  # Set up the directory paths
     $INPUT_DIR  = $PROJECT_DIR + '/' + $DATA_DIR + '/'
     $OUTPUT_DIR = $PROJECT_DIR + '/' + $YAML_DIR   + '/'
-    
-    
  
     print_separator(true)
     puts "  Data Export"
     print_separator(true)
-    
-    puts $INPUT_DIR
  
     $STARTUP_TIME = load_startup_time || Time.now
  
     # Check if the input directory exists
-    if not (File.exist? $INPUT_DIR and File.directory? $INPUT_DIR)
+    if not (File.exists? $INPUT_DIR and File.directory? $INPUT_DIR)
       puts "Error: Input directory #{$INPUT_DIR} does not exist."
       puts "Hint: Check that the $DATA_DIR variable in paths.rb is set to the correct path."
       exit
     end
  
     # Create the output directory if it doesn't exist
-    if not (File.exist? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
+    if not (File.exists? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
       recursive_mkdir( $OUTPUT_DIR )
     end
  
@@ -145,8 +139,6 @@ class DataImporterExporter < PluginBase
     files = files.select { |e| File.extname(e) == ".#{$DATA_TYPE}" }
     files = files.select { |e| file_modified_since?($INPUT_DIR + e, $STARTUP_TIME) or not data_file_exported?($INPUT_DIR + e) }
     files.sort!
-    
-    puts files
  
     if files.empty?
       puts_verbose "No data files need to be exported."

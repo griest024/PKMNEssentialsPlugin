@@ -10,9 +10,6 @@
 #  When the system shuts down, all data is output into YAML and when the system 
 #  is started again, the YAML files are read back into the original Scripts file.
 #===============================================================================
-
-require_relative "../plugin_base"
-
 class ScriptImporterExporter < PluginBase
   # Register this plugin so that the system knows to execute it
   register self
@@ -34,7 +31,7 @@ class ScriptImporterExporter < PluginBase
     print_separator(true)
  
     # Check if the input directory exists
-    if not (File.exist? $INPUT_DIR and File.directory? $INPUT_DIR)
+    if not (File.exists? $INPUT_DIR and File.directory? $INPUT_DIR)
       puts_verbose "Input directory #{$INPUT_DIR} does not exist."
       puts_verbose "Nothing to import...skipping import."
       puts_verbose
@@ -42,7 +39,7 @@ class ScriptImporterExporter < PluginBase
     end
  
     # Create the output directory if it doesn't exist
-    if not (File.exist? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
+    if not (File.exists? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
       puts "Error: Output directory #{$OUTPUT_DIR} does not exist."
       puts "Hint: Check that the data_dir config option in config.yaml is set correctly."
       puts
@@ -52,7 +49,7 @@ class ScriptImporterExporter < PluginBase
     start_time = Time.now
  
     # Import the RGSS scripts from Ruby files
-    if File.exist?($INPUT_DIR + $EXPORT_DIGEST_FILE)
+    if File.exists?($INPUT_DIR + $EXPORT_DIGEST_FILE)
       # Load the export digest
       digest = []
       i = 0
@@ -123,93 +120,7 @@ class ScriptImporterExporter < PluginBase
   end
 
   def on_exit    
-    
-    
-    ####################################################
-    #Section to export PKMNEssentials EditorScripts
-    ####################################################
-    
-    $SCRIPTS_DIR = "src/Scripts/EditorScripts"
-    $OUTPUT_DIR = $PROJECT_DIR + '/' + $SCRIPTS_DIR + '/' 
-    $INPUT_DIR  = $PROJECT_DIR + '/' + $DATA_DIR + '/'
-      
-    print_separator(true)
-    puts "  RGSS Script Export"
-    print_separator(true)
- 
-    $STARTUP_TIME = load_startup_time || Time.now
- 
-    # Check if the input directory exists
-    if not (File.exist? $INPUT_DIR and File.directory? $INPUT_DIR)
-      puts "Error: Input directory #{$INPUT_DIR} does not exist."
-      puts "Hint: Check that the data_dir path in config.yaml is set to the correct path."
-      exit
-    end
- 
-    # Create the output directory if it doesn't exist
-    if not (File.exist? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
-      recursive_mkdir( $OUTPUT_DIR )
-    end
- 
-    if (file_modified_since?($INPUT_DIR + "EditorScripts.#{$DATA_TYPE}", $STARTUP_TIME)) and (File.exist?($SCRIPTS_DIR + "/" + $EXPORT_DIGEST_FILE) || file_modified_since?($INPUT_DIR + "EditorScripts.#{$DATA_TYPE}", $STARTUP_TIME)) and (File.exist?($SCRIPTS_DIR + "/" + $EXPORT_DIGEST_FILE))
-      puts_verbose "No RGSS scripts need to be exported."
-      puts_verbose
-      return
-    end
- 
-    start_time = Time.now
-    
-    # Read in the scripts from script file
-    scripts = nil
-    File.open($INPUT_DIR + "EditorScripts.#{$DATA_TYPE}", File::RDONLY|File::BINARY) do |infile|
-      scripts = Marshal.load(infile)
-    end
- 
-    # Create the export digest
-    digest = []
-    File.open($OUTPUT_DIR + $EXPORT_DIGEST_FILE, File::WRONLY|File::CREAT|File::TRUNC) do |digestfile|
-      scripts.each_index do |i|
-        digest[i] = []
-        digest[i] << scripts[i][0]
-        digest[i] << scripts[i][1]
-        digest[i] << generate_filename(scripts[i])
-        line = "#{digest[i][0].to_s.ljust($COLUMN1_WIDTH)}#{digest[i][1].ljust($COLUMN2_WIDTH)}#{digest[i][2]}\n"
-        #puts line
-        digestfile << line
-      end
-    end
- 
-    # Find out how many non-empty scripts we have
-    num_scripts  = digest.select { |e| e[2].upcase != "EMPTY" }.size
-    num_exported = 0
- 
-    # Save each script to a separate file
-    scripts.each_index do |i|
-      if digest[i][2].upcase != "EMPTY"
-        inflate_start_time = Time.now
-        File.open($OUTPUT_DIR + digest[i][2], File::WRONLY|File::CREAT|File::TRUNC|File::BINARY) do |outfile|
-          outfile << Zlib::Inflate.inflate(scripts[i][2])
-        end
-        num_exported += 1
-        inflate_elapsed_time =  Time.now - inflate_start_time
-        str  = "Exported #{digest[i][2].ljust($FILENAME_WIDTH)}(#{num_exported.to_s.rjust(3, '0')}/#{num_scripts.to_s.rjust(3, '0')})"
-        str += "         #{inflate_elapsed_time} seconds" if inflate_elapsed_time > 0.0
-        puts_verbose str
- 
-      end
-    end
- 
-    puts "\n"
- 
-    elapsed_time = Time.now - start_time
- 
-    print_separator
-    puts_verbose "The total export time:  #{elapsed_time} seconds."
-    print_separator
-    puts_verbose
-    
-     # Set up the directory paths
-    $SCRIPTS_DIR = "src/Scripts/Scripts"
+    # Set up the directory paths
     $INPUT_DIR  = $PROJECT_DIR + '/' + $DATA_DIR + '/'
     $OUTPUT_DIR = $PROJECT_DIR + '/' + $SCRIPTS_DIR + '/'
     
@@ -220,18 +131,18 @@ class ScriptImporterExporter < PluginBase
     $STARTUP_TIME = load_startup_time || Time.now
  
     # Check if the input directory exists
-    if not (File.exist? $INPUT_DIR and File.directory? $INPUT_DIR)
+    if not (File.exists? $INPUT_DIR and File.directory? $INPUT_DIR)
       puts "Error: Input directory #{$INPUT_DIR} does not exist."
       puts "Hint: Check that the data_dir path in config.yaml is set to the correct path."
       exit
     end
  
     # Create the output directory if it doesn't exist
-    if not (File.exist? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
+    if not (File.exists? $OUTPUT_DIR and File.directory? $OUTPUT_DIR)
       recursive_mkdir( $OUTPUT_DIR )
     end
  
-    if (file_modified_since?($INPUT_DIR + "Scripts.#{$DATA_TYPE}", $STARTUP_TIME)) and (File.exist?($SCRIPTS_DIR + "/" + $EXPORT_DIGEST_FILE) || file_modified_since?($INPUT_DIR + "EditorScripts.#{$DATA_TYPE}", $STARTUP_TIME)) and (File.exist?($SCRIPTS_DIR + "/" + $EXPORT_DIGEST_FILE))
+    if (not file_modified_since?($INPUT_DIR + "Scripts.#{$DATA_TYPE}", $STARTUP_TIME)) and (File.exists?($SCRIPTS_DIR + "/" + $EXPORT_DIGEST_FILE))
       puts_verbose "No RGSS scripts need to be exported."
       puts_verbose
       return
@@ -278,5 +189,14 @@ class ScriptImporterExporter < PluginBase
  
       end
     end
+ 
+    puts "\n"
+ 
+    elapsed_time = Time.now - start_time
+ 
+    print_separator
+    puts_verbose "The total export time:  #{elapsed_time} seconds."
+    print_separator
+    puts_verbose
   end
 end

@@ -26,7 +26,7 @@ elsif os_version.index( "Windows" )
 #  $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" ).gsub! "/", "\\"
 end
 
-$CONFIG_PATH = "../Game.yaml"
+$CONFIG_PATH = $PROJECT_DIR + "\\Game.yaml"
 
 
 # Read the config YAML file

@@ -35,3 +35,7 @@ where Plugin was the directory that held Export_RXDATA_to_YAML.rb, then $PROJECT
 Notes when using CVS:
 Since PKMNEssentials uses text files and its makes sense to want to version control the PBS files as well as the resources (graphics/audio) I have found that the best method is repo the entire essentials project, .gitignore Data/ and .rxdata files, and set the plugin to export inside the project. This way all of the data that essentials uses is version controlled. Data is controlled by the YAML and the resources and PBS are versioned directly.
 
+
+TODO:
+- [] add editorscripts to importer
+

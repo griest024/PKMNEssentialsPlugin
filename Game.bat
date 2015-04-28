@@ -7,11 +7,13 @@ REM ========================================================
 
 REM # The plugin system directory path relative to where this
 REM # file resides (RMXP project root).
-SET PLUGIN_SYSTEM_ROOT="../PokemonEssentialsDataPlugin"
+REM # Consider using absolute pathnames.
+SET PLUGIN_SYSTEM_ROOT="..\\PokemonEssentialsDataPlugin"
 
 REM # The RMXP project root path relative to the plugin
 REM # system's root.
-SET RMXP_PROJECT_ROOT="..\\Pokemon Virginia"
+REM # Consider using absolute pathnames.
+SET RMXP_PROJECT_ROOT="..\\<<INSERT PROJECT DIRECTORY HERE>>"
 
 SET OLD_DIR=%CD%
 CD "%PLUGIN_SYSTEM_ROOT%"

@@ -21,7 +21,7 @@ require 'yaml'
 # Setup the config file path
 os_version = `ver`.strip
 if os_version.index( "Windows XP" )
-  $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" )
+  $CONFIG_PATH = String.new( $PROJECT_DIR + "\\Game.yaml" )
 elsif os_version.index( "Windows" )
 #  $CONFIG_PATH = String.new( $PROJECT_DIR + "/Game.yaml" ).gsub! "/", "\\"
 end

@@ -17,7 +17,9 @@ elsif OS_VERSION.index( "Windows" )
  # $PROJECT_DIR = String.new( $PROJECT_DIR ).gsub! "/", "\\"
 end
 
-$PROJECT_DIR = "$PROJECT_DIR"
+
+# Edit this line to point to your project directory.
+$PROJECT_DIR = "..\\Pokemon Virginia"
 
 $DATA_TYPE = "rxdata"
 
